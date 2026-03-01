@@ -1,16 +1,13 @@
 from fastapi import FastAPI
-import json
+from app.api.v1.router import router as v1_router
+
+# import json
 
 app = FastAPI()
+
+app.include_router(v1_router, prefix="/api/v1")
 
 
 @app.get("/")
 def index():
     return {"message": "I'm working!"}
-
-
-@app.get("/users")
-def users():
-    with open("app/data/users.json", "r") as file:
-        data = json.load(file)
-    return data
