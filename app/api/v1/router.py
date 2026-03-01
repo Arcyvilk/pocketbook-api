@@ -5,7 +5,7 @@ router = APIRouter()
 
 
 # USER ENDPOINTS
-@router.get("/users")
+@router.get("/users", tags=["users"])
 def users():
     with open("app/_data/users.json", "r") as file:
         data = json.load(file)
