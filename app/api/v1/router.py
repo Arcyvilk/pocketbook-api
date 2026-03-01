@@ -5,6 +5,8 @@ import datetime
 
 router = APIRouter()
 
+API_PATH = "app/_data"
+
 
 ############################################################
 #                                                          #
@@ -12,17 +14,24 @@ router = APIRouter()
 #                                                          #
 ############################################################
 
+API_PATH_USERS = f"{API_PATH}/users.json"  # "f" means formatted string literal
+
+
+class User(BaseModel):
+    user_id: str
+    name: str
+
 
 @router.get("/users", tags=["users"])
 def users():
-    with open("app/_data/users.json", "r") as file:
+    with open(API_PATH_USERS, "r") as file:
         data = json.load(file)
     return data
 
 
 @router.get("/users/{user_id}", tags=["users"])
 def user(user_id: str):
-    with open("app/_data/users.json", "r") as file:
+    with open(API_PATH_USERS, "r") as file:
         data = json.load(file)
     for user in data:
         if user["id"] == user_id:
@@ -36,6 +45,8 @@ def user(user_id: str):
 #                                                          #
 ############################################################
 
+API_PATH_BILLS = f"{API_PATH}/bills.json"  # "f" means formatted string literal
+
 
 class Bill(BaseModel):
     bill_id: str
@@ -47,14 +58,14 @@ class Bill(BaseModel):
 
 @router.get("/bills", tags=["bills"])
 def bills() -> list[Bill]:
-    with open("app/_data/bills.json", "r") as file:
+    with open(API_PATH_BILLS, "r") as file:
         data = json.load(file)
     return data
 
 
 @router.get("/bills/{bill_id}", tags=["bills"])
 def bill(bill_id: str) -> Bill:
-    with open("app/_data/bills.json", "r") as file:
+    with open(API_PATH_BILLS, "r") as file:
         data = json.load(file)
     for bill in data:
         if bill["bill_id"] == bill_id:
@@ -66,10 +77,10 @@ def bill(bill_id: str) -> Bill:
 @router.post("/bills", tags=["bills"], status_code=status.HTTP_201_CREATED)
 def bill_create(bill: Bill):
     bill.created_at = datetime.datetime.now()
-    with open("app/_data/bills.json", "r") as file:
+    with open(API_PATH_BILLS, "r") as file:
         data = json.load(file)
     data.append(bill)
-    with open("app/_data/bills.json", "w") as file:
+    with open(API_PATH_BILLS, "w") as file:
         json.dump(data, file, indent=2)
 
 
@@ -82,12 +93,12 @@ def bill_update():
     "/bills/{bill_id}", tags=["bills"], status_code=status.HTTP_204_NO_CONTENT
 )
 def bill_delete(bill_id: str):
-    with open("app/_data/bills.json", "r") as file:
+    with open(API_PATH_BILLS, "r") as file:
         data = json.load(file)
     for bill in data:
         if bill["bill_id"] == bill_id:
             data.remove(bill)
-            with open("app/_data/bills.json", "w") as file:
+            with open(API_PATH_BILLS, "w") as file:
                 json.dump(data, file, indent=2)
             return
 
