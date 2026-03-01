@@ -1,5 +1,13 @@
-def main():
-    print("Hello from pocketbook!")
+from fastapi import FastAPI
 
-if __name__ == "__main__":
-    main()
+app = FastAPI()
+
+
+@app.get("/")
+def root():
+    return {"message": "I'm working!"}
+
+
+@app.get("/users")
+def users():
+    return [{"name": "Alice"}, {"name": "Bob"}]
