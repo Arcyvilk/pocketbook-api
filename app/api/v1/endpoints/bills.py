@@ -15,6 +15,7 @@ class Bill(BaseModel):
     owner_id: str
     amount: int
     currency: str
+    description: str
     created_at: str
 
 
