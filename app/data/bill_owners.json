@@ -1,0 +1,18 @@
+[
+  {
+    "bill_id": "1",
+    "owner_id": "1"
+  },
+  {
+    "bill_id": "2",
+    "owner_id": "1"
+  },
+  {
+    "bill_id": "3",
+    "owner_id": "1"
+  },
+  {
+    "bill_id": "4",
+    "owner_id": "1"
+  }
+]

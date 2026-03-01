@@ -1,0 +1,26 @@
+[
+  {
+    "bill_id": "1",
+    "amount": 100,
+    "currency": "NOK",
+    "created_at": "2024-06-01T12:00:00Z"
+  },
+  {
+    "bill_id": "2",
+    "amount": 4783,
+    "currency": "NOK",
+    "created_at": "2024-06-01T12:00:00Z"
+  },
+  {
+    "bill_id": "3",
+    "amount": 226,
+    "currency": "NOK",
+    "created_at": "2024-06-01T12:00:00Z"
+  },
+  {
+    "bill_id": "4",
+    "amount": 852,
+    "currency": "NOK",
+    "created_at": "2024-06-01T12:00:00Z"
+  }
+]
